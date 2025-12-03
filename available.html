@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stanford Zulu - Availability Calendar</title>
+    <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body class="bg-gray-900 text-gray-300">
+    <header class="bg-gray-800 p-4">
+        <h1 class="text-2xl md:text-4xl text-white">Stanford Zulu</h1>
+        <nav>
+            <ul class="flex flex-col md:flex-row justify-center md:justify-between gap-4 md:gap-6">
+                <li><a href="index.html" class="text-white hover:text-gray-400">Go To Home</a></li>
+                <li><a href="#contact" class="text-white hover:text-gray-400">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="max-w-full md:max-w-4xl mx-auto bg-gray-900 p-4">
+        <section id="clock-calendar" class="py-4">
+            <div id="clock" class="text-2xl md:text-3xl"></div>
+            <div id="calendar"></div>
+        </section>
+        <section id="calendar" class="py-4">
+            <h2 class="text-xl md:text-2xl text-white">Availability Calendar</h2>
+            <div id="calendar-container">
+                <h3 id="month-year" class="text-lg text-white mb-4"></h3>
+                <div id="calendar-table"></div>
+            </div>
+        </section>
+        <section id="contact" class="py-4">
+            <h2 class="text-xl md:text-2xl text-white">Contact Me</h2>
+            <div class="flex flex-col md:flex-row gap-4 items-start md:items-center">
+                <p class="text-gray-400">Email: <a href="mailto:stanford.sakhile@cs.unza.zm" class="text-white hover:text-gray-400">stanford.sakhile@cs.unza.zm</a></p>
+            </div>
+            <h3 class="text-white">Follow Me</h3>
+            <ul id="social-media" class="flex flex-wrap gap-4">
+                <li><a href="https://" target="_blank" class="text-white hover:text-gray-400"><i class="fab fa-x-twitter text-2xl"></i></a></li>
+                <li><a href="https://linkedin.com/in/yourprofile" target="_blank" class="text-white hover:text-gray-400"><i class="fab fa-linkedin text-2xl"></i></a></li>
+                <li><a href="https://github.com/yourprofile" target="_blank" class="text-white hover:text-gray-400"><i class="fab fa-github text-2xl"></i></a></li>
+                <li><a href="https://facebook.com/yourprofile" target="_blank" class="text-white hover:text-gray-400"><i class="fab fa-facebook text-2xl"></i></a></li>
+                <li><a href="https://instagram.com/yourprofile" target="_blank" class="text-white hover:text-gray-400"><i class="fab fa-instagram text-2xl"></i></a></li>
+            </ul>
+            <form id="enquiry-form" class="mt-4">
+                <div class="mb-4">
+                    <label for="name" class="block text-sm font-medium text-gray-400">Name</label>
+                    <input type="text" id="name" name="name" placeholder="Your Name" class="mt-1 p-2 text-gray-400 bg-gray-700 border border-gray-600 rounded w-full">
+                </div>
+                <div class="mb-4">
+                    <label for="email" class="block text-sm font-medium text-gray-400">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Your Email" class="mt-1 p-2 text-gray-400 bg-gray-700 border border-gray-600 rounded w-full">
+                </div>
+                <div class="mb-4">
+                    <label for="message" class="block text-sm font-medium text-gray-400">Message</label>
+                    <textarea id="message" name="message" rows="4" placeholder="Your Message" class="mt-1 p-2 text-gray-400 bg-gray-700 border border-gray-600 rounded w-full"></textarea>
+                </div>
+                <button id="send-button" type="button" class="bg-gray-800 text-white py-2 px-4 rounded">Send Enquiry</button>
+                <a id="email-link" style="display: none;" href='mailto:stanford.sakhile@cs.unza.zm?subject=Enquiry from Website&body=Name: {{ name }} Email: {{ email }} Message: {{ message }}'></a>
+            </form>
+        </section>
+    </main>
+    <footer class="bg-gray-800 p-4 text-center">
+        <p>Stanford Zulu (2025)</p>
+    </footer>
+    <script>
+         // Availability Calendar (Monthly View)
+        document.addEventListener('DOMContentLoaded', function() {
+            const monthYearElement = document.getElementById('month-year');
+            const calendarTableElement = document.getElementById('calendar-table');
+            if (monthYearElement && calendarTableElement) {
+                const today = new Date();
+                const currentMonth = today.getMonth();
+                const currentYear = today.getFullYear();
+                const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+                const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+                monthYearElement.textContent = `${monthNames[currentMonth]} ${currentYear}`;
+
+                let calendarHTML = '<table class="w-full text-center">';
+                calendarHTML += '<thead><tr>';
+                for (let i = 0; i < 7; i++) {
+                    calendarHTML += `<th class="py-2">${days[i]}</th>`;
+                }
+                calendarHTML += '</tr></thead><tbody>';
+
+                // Get the first day of the month
+                const firstDay = new Date(currentYear, currentMonth, 1);
+                const lastDay = new Date(currentYear, currentMonth + 1, 0);
+                const startDate = new Date(firstDay);
+                startDate.setDate(firstDay.getDate() - firstDay.getDay()); // Start from Sunday of the week containing the 1st
+
+                // Loop through weeks
+                let currentDate = new Date(startDate);
+                while (currentDate <= lastDay || currentDate.getDay() !== 0) {
+                    calendarHTML += '<tr>';
+                    for (let i = 0; i < 7; i++) {
+                        const day = currentDate.getDate();
+                        const month = currentDate.getMonth();
+                        const year = currentDate.getFullYear();
+                        const isCurrentMonth = month === currentMonth && year === currentYear;
+
+                        let isAvailable = true; // Initially, assume available
+                        if (currentDate.getDay() === 0 || currentDate.getDay() === 6) {  // Sundays and Saturdays are unavailable
+                            isAvailable = false;
+                        }
+
+                        if (isCurrentMonth) {
+                            const isToday = currentDate.toDateString() === today.toDateString();
+                            calendarHTML += `<td class="py-2 ${isAvailable ? 'bg-green-700' : 'bg-red-700'} ${isToday ? 'border-2 border-white font-bold' : ''}">${day}</td>`;
+                        } else {
+                            calendarHTML += '<td class="py-2"></td>'; // Empty cell for days outside the month
+                        }
+
+                        currentDate.setDate(currentDate.getDate() + 1);
+                    }
+                    calendarHTML += '</tr>';
+                    if (currentDate > lastDay && currentDate.getDay() === 0) break; // Stop after the last week
+                }
+
+                calendarHTML += '</tbody></table>';
+                calendarTableElement.innerHTML = calendarHTML;
+            }
+        });
+        function showDateTime() {
+            let clock = document.getElementById('clock');
+            let currentTime = new Date();
+            let hours = currentTime.getHours();
+            let minutes = currentTime.getMinutes();
+            let seconds = currentTime.getSeconds();
+
+            if (hours < 10) hours = '0' + hours;
+            if (minutes < 10) minutes = '0' + minutes;
+            if (seconds < 10) seconds = '0' + seconds;
+
+            clock.textContent = `${hours}:${minutes}:${seconds}`;
+            setTimeout("showDateTime()", 1000);
+        }
+
+        showDateTime();
+
+        const nameInput = document.getElementById('name');
+        const emailInput = document.getElementById('email');
+        const messageInput = document.getElementById('message');
+        const sendButton = document.getElementById('send-button');
+        const emailLink = document.getElementById('email-link');
+
+        // When the send button is clicked...
+        sendButton.addEventListener('click', () => {
+            let name = nameInput.value;
+            let email = emailInput.value;
+            let message = messageInput.value;
+            emailLink.href = `mailto:stanford.sakhile@cs.unza.zm?subject=Enquiry from Website&body=Name: ${name} Email: ${email} Message: ${ message }}`;
+            emailLink.click();
+        });
+    </script>
+</body>
+</html>

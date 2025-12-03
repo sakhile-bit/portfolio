@@ -1,0 +1,98 @@
+ body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+header {
+            background: #005A9C;
+            color: #fff;
+            padding: 10px 20px;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 15px;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+        }
+        section {
+            padding: 20px;
+            background: #fff;
+            margin: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            background: #005A9C;
+            color: #fff;
+        }
+        #calendar-container {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 10px;
+        }
+        .day {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+            position: relative;
+            transition: background-color 0.3s;
+        }
+        .available {
+            background-color: #a8e6cf; /* Light green */
+        }
+        .not-available {
+            background-color: #ff8b94; /* Light red */
+        }
+        .tooltip {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            visibility: hidden;
+            background-color: #555;
+            color: #fff;
+            text-align: center;
+            padding: 5px;
+            border-radius: 5px;
+            z-index: 1;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .day:hover .tooltip {
+            visibility: visible;
+            opacity: 1;
+        }
+        #availability-options {
+            margin-top: 20px;
+        }
+#contact {
+    padding: 20px;
+    text-align: center;
+}
+
+#social-media {
+    list-style: none;
+    padding: 0;
+    display: flex; 
+    justify-content: center; 
+}
+
+#social-media li {
+    margin: 0 10px;
+}
+
+#social-media img {
+    width: 30px; 
+    height: auto; 
+}
