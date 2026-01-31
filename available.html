@@ -100,8 +100,18 @@
                         const year = currentDate.getFullYear();
                         const isCurrentMonth = month === currentMonth && year === currentYear;
 
-                        let isAvailable = true; // Initially, assume available
-                        if (currentDate.getDay() === 0 || currentDate.getDay() === 6) {  // Sundays and Saturdays are unavailable
+
+                        // Mark Fridays, weekends, and holidays as unavailable
+                        const holidays = [
+                            '01-01', // New Year's Day
+                            '03-08', // International Women's Day
+                            '05-01', // Labour Day
+                            '10-24', // Independence Day
+                            // Add more as needed
+                        ];
+                        const mmdd = (String(month + 1).padStart(2, '0')) + '-' + String(day).padStart(2, '0');
+                        let isAvailable = true;
+                        if (currentDate.getDay() === 0 || currentDate.getDay() === 5 || currentDate.getDay() === 6 || holidays.includes(mmdd)) {
                             isAvailable = false;
                         }
 
@@ -109,7 +119,7 @@
                             const isToday = currentDate.toDateString() === today.toDateString();
                             calendarHTML += `<td class="py-2 ${isAvailable ? 'bg-green-700' : 'bg-red-700'} ${isToday ? 'border-2 border-white font-bold' : ''}">${day}</td>`;
                         } else {
-                            calendarHTML += '<td class="py-2"></td>'; // Empty cell for days outside the month
+                            calendarHTML += '<td class="py-2"></td>';
                         }
 
                         currentDate.setDate(currentDate.getDate() + 1);

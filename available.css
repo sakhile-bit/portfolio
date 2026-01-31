@@ -51,7 +51,7 @@ header {
         .available {
             background-color: #a8e6cf; /* Light green */
         }
-        .not-available {
+        .unavailable {
             background-color: #ff8b94; /* Light red */
         }
         .tooltip {

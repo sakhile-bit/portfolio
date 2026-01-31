@@ -7,6 +7,37 @@ document.addEventListener('DOMContentLoaded', () => {
         const timeOptions = { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true };
         const dateString = now.toLocaleDateString(undefined, dateOptions);
         const timeString = now.toLocaleTimeString(undefined, timeOptions);
+        const datetimeDiv = document.getElementById('datetime');
+        if (datetimeDiv) {
+            datetimeDiv.innerHTML = `<span>${dateString}</span><span>${timeString}</span>`;
+        }
+    }
+
+    updateDateTime();
+    setInterval(updateDateTime, 1000);
+
+    // Sticky Header (unchanged)
+    window.addEventListener('scroll', () => {
+        const header = document.querySelector('header');
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+
+    // Contact Form Submission (existing code below remains unchanged)
+    // ...existing code...
+});
+// script.js
+document.addEventListener('DOMContentLoaded', () => {
+    // Date and Time in Header
+    function updateDateTime() {
+        const now = new Date();
+        const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        const timeOptions = { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true };
+        const dateString = now.toLocaleDateString(undefined, dateOptions);
+        const timeString = now.toLocaleTimeString(undefined, timeOptions);
         document.getElementById('datetime').innerHTML = `<span>${dateString}</span><span>${timeString}</span>`;
     }
 

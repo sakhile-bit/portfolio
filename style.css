@@ -1,3 +1,155 @@
+/* Cisco Badges Section */
+#badges {
+    padding: 2.5rem 0 2rem 0;
+    background: #232b32;
+    border-radius: 18px;
+    margin: 2.5rem auto 2.5rem auto;
+    max-width: 1100px;
+    box-shadow: 0 2px 8px rgba(84,160,255,0.07);
+}
+#badges h2 {
+    color: #54a0ff;
+    font-size: 2rem;
+    margin-bottom: 1.2em;
+    letter-spacing: 0.01em;
+}
+.badges-flex {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 2.8em 2.2em;
+    margin-bottom: 1.6em;
+    justify-items: center;
+}
+.badge-card {
+    background: #242c38;
+    border-radius: 14px;
+    box-shadow: 0 1px 4px rgba(84,160,255,0.07);
+    padding: 1.3em 1.5em 1.1em 1.5em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.16s, box-shadow 0.16s, background 0.16s, border 0.16s;
+    min-width: 150px;
+    max-width: 200px;
+    border: 1.5px solid #2c3e50;
+    cursor: pointer;
+}
+.badge-card:hover {
+    transform: translateY(-6px) scale(1.04);
+    box-shadow: 0 4px 16px rgba(84,160,255,0.13);
+    background: #232b32;
+    border-color: #54a0ff;
+}
+.badge-card img {
+    height: 80px;
+    width: 80px;
+    margin-bottom: 0.7em;
+    border-radius: 50%;
+    box-shadow: 0 1px 4px rgba(84,160,255,0.10);
+    background: #fff;
+    border: 2px solid #ffe066;
+    object-fit: cover;
+}
+.badge-card div {
+    color: #ffe066;
+    font-size: 1.08em;
+    margin-top: 0.3em;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    text-shadow: none;
+}
+#badges p {
+    color: #ccc;
+    font-size: 1em;
+}
+/* DateTime in Header */
+#datetime {
+    font-size: 1.05rem;
+    color: #ffe066;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    margin-bottom: 0.2rem;
+    text-align: right;
+    min-height: 1.5em;
+}
+#datetime span {
+    display: inline-block;
+    margin-right: 0.7em;
+}
+/* style.css */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css');
+
+:root {
+  --bg-color: #1e272e;
+  --text-color: #f5f6fa;
+  --accent-color: #54a0ff;
+  --border-color: #34495e;
+  --link-color: #54a0ff;
+  --hover-color: #2980b9;
+  --form-bg: #273c75;
+  --form-text: #f5f6fa;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: var(--link-color);
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--hover-color);
+}
+
+/* Media Queries for Smaller Screens */
+@media (max-width: 768px) {
+    /* General Adjustments */
+    body {
+        font-size: 1rem;
+    }
+
+    header {
+        padding: 1rem;
+    }
+
+    header h1 {
+        font-size: 2rem;
+    }
+
+    nav {
+        margin-top: 1rem;
+        font-size: 8;
+        display:center;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: flex-start;
+        display: grid;
+    }
+
+    nav li {
+        margin: 0.5rem 0;
+    }
+
+    section {
+        padding: 2rem 1rem;
+    }
+
+    section h2 {
+        font-size: 1.75rem;
+    }
+}
 /* style.css */
 
 /* Import Roboto Font */
@@ -309,41 +461,113 @@ section h2 {
 /* Project Section */
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 2.5rem;
+    margin-top: 2.5rem;
+    align-items: stretch;
+    padding: 0 1rem 2rem 1rem;
 }
 
 .project {
-    background-color: #273c75; /* Darker background for projects */
-    border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(135deg, #232b32 60%, #2c3e50 100%);
+    border-radius: 18px;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.18);
     overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.22s, box-shadow 0.22s;
+    min-height: 420px;
+    height: 100%;
+    justify-content: stretch;
+    border: 1.5px solid #34495e;
 }
 
 .project:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 7px 15px rgba(0, 0, 0, 0.15);
+    transform: translateY(-8px) scale(1.025);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.22);
+    border-color: var(--accent-color);
+}
+
+.project:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.18);
 }
 
 .project-image {
     width: 100%;
-    height: 200px;
+    height: 170px;
     object-fit: cover;
+    background: #1e272e;
     display: block;
+    border-bottom: 2px solid #34495e;
+}
+
+.project-content {
+    padding: 1.25rem 1.5rem 1.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    justify-content: space-between;
 }
 
 .project h3 {
-    margin: 1.25rem 1.25rem 0.75rem;
-    font-size: 1.4rem;
-    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
     color: var(--accent-color);
 }
 
-.project p {
-    margin: 0 1.25rem 1.25rem;
-    color: #c8d6e5; /* Light gray for paragraph text */
-    font-size: 0.95rem;
+.project-desc {
+    margin-bottom: 1.1rem;
+    color: #e0e6ed;
+    font-size: 1.04rem;
+    font-weight: 400;
+    min-height: 72px;
+}
+
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.2rem;
+    padding: 0;
+    list-style: none;
+    justify-content: flex-start;
+}
+
+.project-tags li {
+    background: #34495e;
+    color: #fff;
+    border-radius: 14px;
+    padding: 0.28rem 0.85rem;
+    font-size: 0.87rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.07);
+}
+
+.project-links {
+    margin-top: auto;
+}
+
+.project-link-btn {
+    display: block;
+    width: 100%;
+    background: var(--accent-color);
+    color: #fff;
+    padding: 0.7rem 0;
+    border-radius: 24px;
+    font-weight: 500;
+    font-size: 1.05rem;
+    text-align: center;
+    transition: background 0.2s, color 0.2s;
+    margin: 0 auto;
+    max-width: 220px;
+    box-shadow: 0 2px 8px rgba(84,160,255,0.08);
+}
+
+.project-link-btn:hover {
+    background: #2980b9;
+    color: #fff;
 }
 
 .project a {
