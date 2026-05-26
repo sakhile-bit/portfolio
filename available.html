@@ -18,9 +18,8 @@
         </nav>
     </header>
     <main class="max-w-full md:max-w-4xl mx-auto bg-gray-900 p-4">
-        <section id="clock-calendar" class="py-4">
+        <section id="clock-section" class="py-4">
             <div id="clock" class="text-2xl md:text-3xl"></div>
-            <div id="calendar"></div>
         </section>
         <section id="calendar" class="py-4">
             <h2 class="text-xl md:text-2xl text-white">Availability Calendar</h2>
@@ -36,7 +35,7 @@
             </div>
             <h3 class="text-white">Follow Me</h3>
             <ul id="social-media" class="flex flex-wrap gap-4">
-                <li><a href="https://" target="_blank" class="text-white hover:text-gray-400"><i class="fab fa-x-twitter text-2xl"></i></a></li>
+                <li><a href="https://x.com" target="_blank" class="text-white hover:text-gray-400"><i class="fab fa-x-twitter text-2xl"></i></a></li>
                 <li><a href="https://linkedin.com/in/yourprofile" target="_blank" class="text-white hover:text-gray-400"><i class="fab fa-linkedin text-2xl"></i></a></li>
                 <li><a href="https://github.com/yourprofile" target="_blank" class="text-white hover:text-gray-400"><i class="fab fa-github text-2xl"></i></a></li>
                 <li><a href="https://facebook.com/yourprofile" target="_blank" class="text-white hover:text-gray-400"><i class="fab fa-facebook text-2xl"></i></a></li>
@@ -144,7 +143,7 @@
             if (seconds < 10) seconds = '0' + seconds;
 
             clock.textContent = `${hours}:${minutes}:${seconds}`;
-            setTimeout("showDateTime()", 1000);
+            setTimeout(showDateTime, 1000);
         }
 
         showDateTime();
@@ -160,7 +159,7 @@
             let name = nameInput.value;
             let email = emailInput.value;
             let message = messageInput.value;
-            emailLink.href = `mailto:stanford.sakhile@cs.unza.zm?subject=Enquiry from Website&body=Name: ${name} Email: ${email} Message: ${ message }}`;
+            emailLink.href = `mailto:stanford.sakhile@cs.unza.zm?subject=Enquiry from Website&body=Name: ${name} Email: ${email} Message: ${message}`;
             emailLink.click();
         });
     </script>
