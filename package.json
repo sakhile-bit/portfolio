@@ -1,0 +1,25 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "description": "\"# portfolio\"",
+  "main": "available.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "predeploy": "echo 'Preparing deployment'",
+    "deploy": "gh-pages -d ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sakhile-bit/portfolio.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sakhile-bit/portfolio/issues"
+  },
+  "homepage": "https://github.com/sakhile-bit/portfolio#readme",
+  "devDependencies": {
+    "gh-pages": "^6.3.0"
+  }
+}
