@@ -1,72 +1,124 @@
-// script.js
 document.addEventListener('DOMContentLoaded', () => {
-    // Date and Time in Header
-    function updateDateTime() {
-        const now = new Date();
-        const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-        const timeOptions = { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true };
-        const dateString = now.toLocaleDateString(undefined, dateOptions);
-        const timeString = now.toLocaleTimeString(undefined, timeOptions);
-        document.getElementById('datetime').innerHTML = `<span>${dateString}</span><span>${timeString}</span>`;
+
+    // ── Live clock in hero stats ──
+    function updateClock() {
+        const hmEl = document.getElementById('clock-hm');
+        const ssEl = document.getElementById('clock-ss');
+        const apEl = document.getElementById('clock-ap');
+        if (!hmEl) return;
+        const now  = new Date();
+        let h      = now.getHours();
+        const m    = String(now.getMinutes()).padStart(2, '0');
+        const s    = String(now.getSeconds()).padStart(2, '0');
+        const ampm = h >= 12 ? 'PM' : 'AM';
+        h = h % 12 || 12;
+        hmEl.textContent = `${String(h).padStart(2,'0')}:${m}`;
+        ssEl.textContent = `:${s}`;
+        apEl.textContent = ampm;
     }
+    updateClock();
+    setInterval(updateClock, 1000);
 
-    // Initial call to set the time and date immediately
-    updateDateTime();
-
-    // Update the date and time every second
-    setInterval(updateDateTime, 1000);
-
-    // Fade-in effect (unchanged)
-    const fadeElements = document.querySelectorAll('.fade-in');
-    fadeElements.forEach((element) => {
-        element.classList.remove('opacity-0');
-    });
-
-    // Sticky Header (unchanged)
+    // ── Sticky header shadow ──
+    const header = document.getElementById('site-header');
     window.addEventListener('scroll', () => {
-        const header = document.querySelector('header');
-        if (window.scrollY > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
+        header.classList.toggle('scrolled', window.scrollY > 50);
+    }, { passive: true });
+
+    // ── Active nav link on scroll ──
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('nav a');
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                navLinks.forEach(link => {
+                    link.classList.toggle(
+                        'active',
+                        link.getAttribute('href') === `#${entry.target.id}`
+                    );
+                });
+            }
+        });
+    }, { rootMargin: '-40% 0px -55% 0px' });
+
+    sections.forEach(s => observer.observe(s));
+
+    // ── Hamburger menu ──
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobileNav');
+
+    hamburger.addEventListener('click', () => {
+        const open = hamburger.classList.toggle('open');
+        mobileNav.classList.toggle('open', open);
+        document.body.style.overflow = open ? 'hidden' : '';
     });
 
-    // Contact Form Submission
+    document.querySelectorAll('.mobile-link').forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('open');
+            mobileNav.classList.remove('open');
+            document.body.style.overflow = '';
+        });
+    });
+
+    // ── Contact form ──
     const contactForm = document.getElementById('contactForm');
     const formMessage = document.getElementById('form-message');
 
     if (contactForm) {
-        contactForm.addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent default form submission
+        contactForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const btn = this.querySelector('.btn-submit');
+            btn.textContent = 'Sending…';
+            btn.disabled = true;
 
-            const formData = new FormData(this);
-
-            fetch(this.action, { // Use the form's 'action' attribute for the URL
+            fetch(this.action || '#', {
                 method: 'POST',
-                body: formData,
-                headers: {
-                    'Accept': 'application/json' // Or 'application/x-www-form-urlencoded'
-                }
+                body: new FormData(this),
+                headers: { 'Accept': 'application/json' }
             })
-            .then(response => {
-                if (response.ok) {
-                    // Success
+            .then(res => {
+                if (res.ok) {
                     formMessage.className = 'form-message success';
-                    formMessage.textContent = 'Message sent successfully!';
-                    contactForm.reset(); // Clear the form
+                    formMessage.textContent = '✓ Message sent! I\'ll be in touch soon.';
+                    contactForm.reset();
                 } else {
-                    // Error
-                    formMessage.className = 'form-message error';
-                    formMessage.textContent = 'There was an error sending your message.';
+                    throw new Error('Server error');
                 }
             })
-            .catch(error => {
-                // Network error
+            .catch(() => {
                 formMessage.className = 'form-message error';
-                formMessage.textContent = 'Network error. Please try again later.';
-                console.error('Fetch error:', error);
+                formMessage.textContent = '✗ Something went wrong. Try emailing me directly.';
+            })
+            .finally(() => {
+                btn.innerHTML = 'Send Message <i class="fas fa-paper-plane"></i>';
+                btn.disabled = false;
             });
         });
     }
+
+    // ── Scroll-reveal for section elements ──
+    const revealEls = document.querySelectorAll(
+        '.skill-card, .project-card, .exp-item, .badge-card, .about-grid'
+    );
+
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry, i) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }, i * 80);
+                revealObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+
+    revealEls.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        revealObserver.observe(el);
+    });
 });

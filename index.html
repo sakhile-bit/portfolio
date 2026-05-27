@@ -3,221 +3,359 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stanford Zulu</title>
+    <title>Stanford Zulu — Networking &amp; Security</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-    <header>
-        <div class="header-content">
-            <div id="datetime"></div>
-            <h1>Stanford Zulu</h1>
+
+    <!-- ── HEADER ── -->
+    <header id="site-header">
+        <div class="header-inner">
+            <a href="#hero" class="logo">SZ<span class="logo-dot">.</span></a>
+            <nav>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
         </div>
-        <nav>
-            <ul>
-                <li><a href="#hero"><i class="fas fa-home"></i> Home</a></li>
-                <li><a href="#about"><i class="fas fa-user"></i> About</a></li>
-                <li><a href="#skills"><i class="fas fa-tools"></i> Skills</a></li>
-                <li><a href="#projects"><i class="fas fa-project-diagram"></i> Projects</a></li>
-                <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
-            </ul>
-        </nav>
     </header>
 
-    <section id="hero">
-        <div id="particles-js"></div>
-        <div class="hero-content">
-            <h1 class="hero-title">Welcome to My Portfolio</h1>
-            <p class="hero-subtitle">Networking & Systems Security Enthusiast</p>
-            <div class="hero-skills">
-                <span class="skill-badge"><i class="fas fa-network-wired"></i> Networking</span>
-                <span class="skill-badge"><i class="fas fa-shield-alt"></i> Security</span>
-                <span class="skill-badge"><i class="fas fa-server"></i> Systems</span>
-                <span class="skill-badge"><i class="fas fa-cloud"></i> Cloud</span>
-            </div>
-            <a href="#about" class="cta-button">Learn More About Me</a>
-        </div>
-    </section>
-
-    <section id="about">
-        <div class="section-content">
-            <div class="about-image">
-                <img src="profile1.jpg" alt="Stanford Zulu" class="profile-picture">
-            </div>
-            <div class="about-text">
-                <h2>About Me</h2>
-                <p>Enthusiastic and detail-oriented individual with a strong passion for technology and a focus on Networking and Systems Security. I am driven to build and maintain secure and efficient network infrastructures.</p>
-                <p>My major in Networking and Systems Security has equipped me with a solid understanding of network protocols, security principles, and system administration. I'm eager to apply my skills to real-world challenges and contribute to innovative solutions.</p>
-                <p>I'm dedicated to getting things done the right way. I buckle down and really enjoy the process of creating.</p>
-                <div class="stats">
-                    <div class="stat">
-                        <h3>2+</h3>
-                        <p>Years Experience</p>
-                    </div>
-                    <div class="stat">
-                        <h3>5+</h3>
-                        <p>Projects Completed</p>
-                    </div>
-                    <div class="stat">
-                        <h3>10+</h3>
-                        <p>Technologies Learned</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="skills">
-        <h2>My Skills</h2>
-        <div class="skills-grid">
-            <div class="skill">
-                <i class="fas fa-network-wired"></i>
-                <h3>Networking</h3>
-                <p>Expert in network protocols, routing, switching, and infrastructure management.</p>
-            </div>
-            <div class="skill">
-                <i class="fas fa-shield-alt"></i>
-                <h3>Systems Security</h3>
-                <p>Proficient in cybersecurity principles, threat analysis, and secure system design.</p>
-            </div>
-            <div class="skill">
-                <i class="fas fa-server"></i>
-                <h3>System Administration</h3>
-                <p>Skilled in server management, virtualization, and cloud computing platforms.</p>
-            </div>
-            <div class="skill">
-                <i class="fas fa-code"></i>
-                <h3>Programming</h3>
-                <p>Knowledgeable in Python, JavaScript, and various scripting languages for automation.</p>
-            </div>
-            <div class="skill">
-                <i class="fas fa-database"></i>
-                <h3>Database Management</h3>
-                <p>Experienced with SQL databases, data modeling, and query optimization.</p>
-            </div>
-            <div class="skill">
-                <i class="fas fa-cloud"></i>
-                <h3>Cloud Computing</h3>
-                <p>Familiar with AWS, Azure, and cloud infrastructure deployment.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="projects">
-        <h2>My Projects</h2>
-        <div class="projects-grid">
-            <div class="project">
-                                <img src="kumitusa_logo.png" alt="Kumitusa.com" class="project-image">
-                                <h3>Kumitusa.com</h3>
-                                <p class="project-desc">
-                                    Kumitusa empowers Zambian youth, women, and farmers through entrepreneurship, training, and sustainable market access. Our mission is to build resilient communities and support local value chains.
-                                </p>
-                                <ul class="project-tags">
-                                    <li>PHP</li>
-                                    <li>Laravel</li>
-                                    <li>Blade</li>
-                                    <li>Java Spring Boot</li>
-                                    <li>MySQL</li>
-                                    <li>Lenco Payment Gateway</li>
-                                </ul>
-                                <a href="https://kumitusa.com/" target="_blank" rel="noopener" class="project-link-btn">Visit Kumitusa</a>
-            </div>
-            <div class="project">
-                <img src="project2-image.jpg" alt="Manda Hill Testing Project" class="project-image">
-                <h3>Manda Hill Testing Project</h3>
-                <p>A project that emphasizes testing and development of network security protocols.</p>
-                <a href="#">View Project</a>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact">
-        <h2>Contact Me</h2>
-        <div class="contact-content">
-            <div class="contact-info">
-                <p>Email: <a href="mailto:stanford.sakhile@cs.unza.zm">stanford.sakhile@cs.unza.zm</a></p>
-                <p>Call: +260969274765</p>
-                <p><a href="available.html" class="availability-link"><i class="fas fa-calendar-alt"></i> Check My Availability</a></p>
-            </div>
-            <div class="social-media-icons">
-                <h3>Follow Me</h3>
-                <ul id="social-media">
-                    <li><a href="https://wa.link/lppkij" target="_blank"><i class="fab fa-whatsapp"></i></a></li>
-                    <li><a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a></li>
-                    <li><a href="https://github.com" target="_blank" ><i class="fab fa-github"></i></a></li>
-                    <li><a href="https://facebook.com" target="_blank" ><i class="fab fa-facebook"></i></a></li>
-                    <li><a href="https://www.instagram.com/stanfordsakhile/profilecard/?igsh=dHRlN2RzNGJqNG5i" target="_blank" ><i class="fab fa-instagram"></i></a></li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <section id="badges">
-        <h2>My Cisco Badges</h2>
-        <div class="badges-flex">
-            <a href="https://www.credly.com/badges/example-cisco-badge1" target="_blank" rel="noopener" class="badge-card">
-                <img src="cisco_badge1.png" alt="Cisco Badge 1">
-                <div>CCNA</div>
-            </a>
-            <a href="https://www.credly.com/badges/example-cisco-badge2" target="_blank" rel="noopener" class="badge-card">
-                <img src="cisco_badge2.png" alt="Cisco Badge 2">
-                <div>CyberOps Associate</div>
-            </a>
-            <a href="https://www.credly.com/badges/example-cisco-badge3" target="_blank" rel="noopener" class="badge-card">
-                <img src="cisco_badge3.png" alt="Cisco Badge 3">
-                <div>DevNet Associate</div>
-            </a>
-            <a href="https://www.credly.com/badges/example-cisco-badge4" target="_blank" rel="noopener" class="badge-card">
-                <img src="cisco_badge4.png" alt="Cisco Badge 4">
-                <div>Enterprise Networking</div>
-            </a>
-        </div>
-        <p>Click a badge to verify or learn more.</p>
-    </section>
-
-    <section id="cv-download" style="text-align:center;">
-        <h2 style="color:#ffe066; font-size:1.5rem; margin-bottom:0.5em;">Download My CV</h2>
-        <p style="color:#ccc; margin-bottom:1em;">Employers can download my latest CV here:</p>
-        <a href="Stanford_Zulu_CV.pdf" download style="display:inline-block; background:#54a0ff; color:#fff; font-weight:600; padding:0.7em 2em; border-radius:2em; text-decoration:none; font-size:1.1em; transition:background 0.2s;">
-            <i class="fas fa-file-download"></i> Download CV (PDF)
-        </a>
-    </section>
-
-    <section id="contact-form-section">
-        <h2>Leave Me a Message</h2>
-        <div class="form-container">
-            <form id="contactForm" action="#" method="POST"> <!-- Replace '#' with your form processing URL -->
-                <div class="form-group">
-                    <label for="name">Name:</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="message">Message:</label>
-                    <textarea id="message" name="message" rows="5" required></textarea>
-                </div>
-                <button type="submit">Send Message</button>
-                <div id="form-message" class="form-message"></div> 
-            </form>
-        </div>
-    </section>
-
-    <!-- Floating Action Button -->
-    <div class="fab" style="position: fixed; bottom: 32px; right: 32px; z-index: 9999;">
-        <a href="#contact-form-section" title="Quick Contact" style="display: flex; align-items: center; justify-content: center; width: 60px; height: 60px; background: var(--accent-color); color: #fff; border-radius: 50%; box-shadow: 0 4px 16px rgba(84,160,255,0.18); font-size: 2rem; transition: background 0.2s;">
-            <i class="fas fa-paper-plane"></i>
-        </a>
+    <!-- Mobile Nav Overlay -->
+    <div class="mobile-nav" id="mobileNav">
+        <ul>
+            <li><a href="#about" class="mobile-link">About</a></li>
+            <li><a href="#experience" class="mobile-link">Experience</a></li>
+            <li><a href="#skills" class="mobile-link">Skills</a></li>
+            <li><a href="#projects" class="mobile-link">Projects</a></li>
+            <li><a href="#contact" class="mobile-link">Contact</a></li>
+        </ul>
     </div>
 
+    <!-- ── HERO ── -->
+    <section id="hero">
+        <div class="hero-inner">
+            <div class="hero-status">
+                <span class="status-dot"></span>
+                Available for opportunities
+            </div>
+            <h1 class="hero-name">Stanford Zulu</h1>
+            <p class="hero-tagline">
+                Networking &amp; Systems Security enthusiast based in Lusaka, Zambia.<br>
+                Building secure, resilient infrastructures and real solutions for real people.
+            </p>
+            <div class="hero-actions">
+                <a href="#projects" class="btn-primary">View My Work</a>
+                <a href="Stanford_Zulu_CV.pdf" download class="btn-secondary">
+                    <i class="fas fa-file-download"></i> Download CV
+                </a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-num">2+</span>
+                    <span class="stat-label">Years Experience</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <span class="stat-num">5+</span>
+                    <span class="stat-label">Projects Completed</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <span class="stat-num">10+</span>
+                    <span class="stat-label">Technologies</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <span class="stat-num clock-hero">
+                        <span id="clock-hm"></span><span class="clock-hero-secs" id="clock-ss"></span><span class="clock-hero-ampm" id="clock-ap"></span>
+                    </span>
+                    <span class="stat-label">Local Time — Lusaka</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── ABOUT ── -->
+    <section id="about">
+        <div class="section-inner">
+            <div class="section-label">ABOUT</div>
+            <div class="about-grid">
+                <div class="about-image-wrap">
+                    <img src="profile1.jpg" alt="Stanford Zulu" class="profile-picture">
+                </div>
+                <div class="about-body">
+                    <h2 class="section-title">Who I Am</h2>
+                    <p>Enthusiastic and detail-oriented individual with a strong passion for technology and a focus on <strong>Networking and Systems Security</strong>. I am driven to build and maintain secure, efficient network infrastructures.</p>
+                    <p>My major in Networking and Systems Security has equipped me with a solid understanding of network protocols, security principles, and system administration. I'm eager to apply my skills to real-world challenges.</p>
+                    <p>I'm dedicated to getting things done the right way — I buckle down and really enjoy the process of creating.</p>
+                    <div class="about-links">
+                        <a href="mailto:stanford.sakhile@cs.unza.zm" class="inline-link">
+                            <i class="fas fa-envelope"></i> stanford.sakhile@cs.unza.zm
+                        </a>
+                        <a href="available.html" class="inline-link">
+                            <i class="fas fa-calendar-alt"></i> Check Availability
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ── EXPERIENCE ── -->
+    <section id="experience">
+        <div class="section-inner">
+            <div class="section-label">EXPERIENCE</div>
+            <h2 class="section-title">Work History</h2>
+
+            <div class="exp-list">
+
+                <div class="exp-item">
+                    <div class="exp-meta">
+                        <span class="exp-year">2024 — Present</span>
+                    </div>
+                    <div class="exp-body">
+                        <h3 class="exp-role">Network &amp; Security Intern</h3>
+                        <a href="#" class="exp-company">Kumitusa Technologies</a>
+                        <ul class="exp-duties">
+                            <li>Assisted in designing and deploying secure network infrastructure for the Kumitusa platform</li>
+                            <li>Conducted vulnerability assessments and implemented firewall policies</li>
+                            <li>Managed cloud infrastructure and backend services supporting the platform</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="exp-divider"></div>
+
+                <div class="exp-item">
+                    <div class="exp-meta">
+                        <span class="exp-year">2023 — 2024</span>
+                    </div>
+                    <div class="exp-body">
+                        <h3 class="exp-role">IT Support &amp; Systems Admin</h3>
+                        <a href="#" class="exp-company">University of Zambia</a>
+                        <ul class="exp-duties">
+                            <li>Provided technical support and maintained campus network equipment</li>
+                            <li>Assisted in configuring routing and switching infrastructure</li>
+                            <li>Supported students and staff with systems and connectivity issues</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ── SKILLS ── -->
+    <section id="skills">
+        <div class="section-inner">
+            <div class="section-label">SKILLS</div>
+            <h2 class="section-title">What I Work With</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fas fa-network-wired"></i></div>
+                    <h3>Networking</h3>
+                    <p>Routing, switching, VLANs, TCP/IP, network protocols and infrastructure management.</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fas fa-shield-alt"></i></div>
+                    <h3>Systems Security</h3>
+                    <p>Cybersecurity principles, threat analysis, firewalls, and secure system design.</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fas fa-server"></i></div>
+                    <h3>System Administration</h3>
+                    <p>Server management, Linux/Windows administration, virtualization, and cloud platforms.</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fas fa-code"></i></div>
+                    <h3>Programming</h3>
+                    <p>Python, JavaScript, Bash scripting for automation and network tooling.</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fas fa-database"></i></div>
+                    <h3>Database Management</h3>
+                    <p>SQL databases, data modeling, query optimization, and database administration.</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fas fa-cloud"></i></div>
+                    <h3>Cloud Computing</h3>
+                    <p>AWS, Azure fundamentals, cloud infrastructure deployment and monitoring.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ── PROJECTS ── -->
+    <section id="projects">
+        <div class="section-inner">
+            <div class="section-label">WORK</div>
+            <h2 class="section-title">Notable Projects</h2>
+            <div class="projects-list">
+
+                <div class="project-card">
+                    <div class="project-number">PROJECT 01</div>
+                    <div class="project-content">
+                        <div class="project-image-wrap">
+                            <img src="kumitusa_logo.png" alt="Kumitusa.com" class="project-image">
+                        </div>
+                        <div class="project-info">
+                            <h3 class="project-title">Kumitusa.com</h3>
+                            <p class="project-desc">Kumitusa empowers Zambian youth, women, and farmers through entrepreneurship, training, and sustainable market access. Built to support resilient communities and local value chains.</p>
+                            <ul class="project-tags">
+                                <li>PHP</li>
+                                <li>Laravel</li>
+                                <li>Blade</li>
+                                <li>Java Spring Boot</li>
+                                <li>MySQL</li>
+                                <li>Lenco Payment Gateway</li>
+                            </ul>
+                            <a href="https://kumitusa.com/" target="_blank" rel="noopener" class="project-link">
+                                Visit Project <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-number">PROJECT 02</div>
+                    <div class="project-content">
+                        <div class="project-image-wrap">
+                            <img src="project2-image.jpg" alt="Manda Hill Testing Project" class="project-image">
+                        </div>
+                        <div class="project-info">
+                            <h3 class="project-title">Manda Hill Network Security</h3>
+                            <p class="project-desc">A project focused on testing and development of network security protocols, including threat modeling, penetration testing preparation, and hardening documentation.</p>
+                            <ul class="project-tags">
+                                <li>Network Security</li>
+                                <li>Penetration Testing</li>
+                                <li>Cisco</li>
+                            </ul>
+                            <a href="#" class="project-link">
+                                View Project <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ── CERTIFICATIONS ── -->
+    <section id="badges">
+        <div class="section-inner">
+            <div class="section-label">CREDENTIALS</div>
+            <h2 class="section-title">Cisco Certifications</h2>
+            <p class="section-sub">Click any badge to verify on Credly.</p>
+            <div class="badges-grid">
+                <a href="https://www.credly.com/badges/example-cisco-badge1" target="_blank" rel="noopener" class="badge-card">
+                    <img src="cisco_badge1.png" alt="CCNA Badge">
+                    <span>CCNA</span>
+                </a>
+                <a href="https://www.credly.com/badges/example-cisco-badge2" target="_blank" rel="noopener" class="badge-card">
+                    <img src="cisco_badge2.png" alt="CyberOps Associate">
+                    <span>CyberOps Associate</span>
+                </a>
+                <a href="https://www.credly.com/badges/example-cisco-badge3" target="_blank" rel="noopener" class="badge-card">
+                    <img src="cisco_badge3.png" alt="DevNet Associate">
+                    <span>DevNet Associate</span>
+                </a>
+                <a href="https://www.credly.com/badges/example-cisco-badge4" target="_blank" rel="noopener" class="badge-card">
+                    <img src="cisco_badge4.png" alt="Enterprise Networking">
+                    <span>Enterprise Networking</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ── CONTACT ── -->
+    <section id="contact">
+        <div class="section-inner">
+            <div class="section-label">CONTACT</div>
+            <div class="contact-grid">
+                <div class="contact-left">
+                    <h2 class="section-title">Let's Work Together</h2>
+                    <p class="contact-body">Have a project, opportunity, or just want to connect? Reach out — I'm always open to interesting conversations.</p>
+                    <div class="contact-details">
+                        <a href="mailto:stanford.sakhile@cs.unza.zm" class="contact-row">
+                            <i class="fas fa-envelope"></i>
+                            <span>stanford.sakhile@cs.unza.zm</span>
+                        </a>
+                        <div class="contact-row">
+                            <i class="fas fa-phone"></i>
+                            <span>+260 969 274 765</span>
+                        </div>
+                        <a href="available.html" class="contact-row">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Check My Availability</span>
+                        </a>
+                    </div>
+                    <div class="social-row">
+                        <a href="https://wa.link/lppkij" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://github.com/sakhile-bit" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/stanfordsakhile/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="contact-right">
+                    <form id="contactForm" action="#" method="POST">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" placeholder="Your name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" placeholder="What's on your mind?" required></textarea>
+                        </div>
+                        <button type="submit" class="btn-submit">Send Message <i class="fas fa-paper-plane"></i></button>
+                        <div id="form-message" class="form-message"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── FOOTER ── -->
     <footer>
-        <p>&copy; 2025 Stanford Zulu. All Rights Reserved.</p>
+        <div class="footer-inner">
+            <span class="footer-logo">SZ<span class="logo-dot">.</span></span>
+            <p>&copy; 2025 Stanford Zulu. All rights reserved.</p>
+            <a href="Stanford_Zulu_CV.pdf" download class="footer-cv">
+                <i class="fas fa-file-download"></i> Download CV
+            </a>
+        </div>
     </footer>
+
+    <!-- Floating Contact Button -->
+    <a href="#contact" class="fab" title="Quick Contact" aria-label="Contact">
+        <i class="fas fa-paper-plane"></i> Contact
+    </a>
 
     <script src="script.js"></script>
 </body>

@@ -3,165 +3,574 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stanford Zulu - Availability Calendar</title>
-    <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-</head>
-<body class="bg-gray-900 text-gray-300">
-    <header class="bg-gray-800 p-4">
-        <h1 class="text-2xl md:text-4xl text-white">Stanford Zulu</h1>
-        <nav>
-            <ul class="flex flex-col md:flex-row justify-center md:justify-between gap-4 md:gap-6">
-                <li><a href="index.html" class="text-white hover:text-gray-400">Go To Home</a></li>
-                <li><a href="#contact" class="text-white hover:text-gray-400">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main class="max-w-full md:max-w-4xl mx-auto bg-gray-900 p-4">
-        <section id="clock-section" class="py-4">
-            <div id="clock" class="text-2xl md:text-3xl"></div>
-        </section>
-        <section id="calendar" class="py-4">
-            <h2 class="text-xl md:text-2xl text-white">Availability Calendar</h2>
-            <div id="calendar-container">
-                <h3 id="month-year" class="text-lg text-white mb-4"></h3>
-                <div id="calendar-table"></div>
-            </div>
-        </section>
-        <section id="contact" class="py-4">
-            <h2 class="text-xl md:text-2xl text-white">Contact Me</h2>
-            <div class="flex flex-col md:flex-row gap-4 items-start md:items-center">
-                <p class="text-gray-400">Email: <a href="mailto:stanford.sakhile@cs.unza.zm" class="text-white hover:text-gray-400">stanford.sakhile@cs.unza.zm</a></p>
-            </div>
-            <h3 class="text-white">Follow Me</h3>
-            <ul id="social-media" class="flex flex-wrap gap-4">
-                <li><a href="https://x.com" target="_blank" class="text-white hover:text-gray-400"><i class="fab fa-x-twitter text-2xl"></i></a></li>
-                <li><a href="https://linkedin.com/in/yourprofile" target="_blank" class="text-white hover:text-gray-400"><i class="fab fa-linkedin text-2xl"></i></a></li>
-                <li><a href="https://github.com/yourprofile" target="_blank" class="text-white hover:text-gray-400"><i class="fab fa-github text-2xl"></i></a></li>
-                <li><a href="https://facebook.com/yourprofile" target="_blank" class="text-white hover:text-gray-400"><i class="fab fa-facebook text-2xl"></i></a></li>
-                <li><a href="https://instagram.com/yourprofile" target="_blank" class="text-white hover:text-gray-400"><i class="fab fa-instagram text-2xl"></i></a></li>
-            </ul>
-            <form id="enquiry-form" class="mt-4">
-                <div class="mb-4">
-                    <label for="name" class="block text-sm font-medium text-gray-400">Name</label>
-                    <input type="text" id="name" name="name" placeholder="Your Name" class="mt-1 p-2 text-gray-400 bg-gray-700 border border-gray-600 rounded w-full">
-                </div>
-                <div class="mb-4">
-                    <label for="email" class="block text-sm font-medium text-gray-400">Email</label>
-                    <input type="email" id="email" name="email" placeholder="Your Email" class="mt-1 p-2 text-gray-400 bg-gray-700 border border-gray-600 rounded w-full">
-                </div>
-                <div class="mb-4">
-                    <label for="message" class="block text-sm font-medium text-gray-400">Message</label>
-                    <textarea id="message" name="message" rows="4" placeholder="Your Message" class="mt-1 p-2 text-gray-400 bg-gray-700 border border-gray-600 rounded w-full"></textarea>
-                </div>
-                <button id="send-button" type="button" class="bg-gray-800 text-white py-2 px-4 rounded">Send Enquiry</button>
-                <a id="email-link" style="display: none;" href='mailto:stanford.sakhile@cs.unza.zm?subject=Enquiry from Website&body=Name: {{ name }} Email: {{ email }} Message: {{ message }}'></a>
-            </form>
-        </section>
-    </main>
-    <footer class="bg-gray-800 p-4 text-center">
-        <p>Stanford Zulu (2025)</p>
-    </footer>
-    <script>
-         // Availability Calendar (Monthly View)
-        document.addEventListener('DOMContentLoaded', function() {
-            const monthYearElement = document.getElementById('month-year');
-            const calendarTableElement = document.getElementById('calendar-table');
-            if (monthYearElement && calendarTableElement) {
-                const today = new Date();
-                const currentMonth = today.getMonth();
-                const currentYear = today.getFullYear();
-                const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-                const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    <title>Availability — Stanford Zulu</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* ── Page-specific overrides ── */
 
-                monthYearElement.textContent = `${monthNames[currentMonth]} ${currentYear}`;
-
-                let calendarHTML = '<table class="w-full text-center">';
-                calendarHTML += '<thead><tr>';
-                for (let i = 0; i < 7; i++) {
-                    calendarHTML += `<th class="py-2">${days[i]}</th>`;
-                }
-                calendarHTML += '</tr></thead><tbody>';
-
-                // Get the first day of the month
-                const firstDay = new Date(currentYear, currentMonth, 1);
-                const lastDay = new Date(currentYear, currentMonth + 1, 0);
-                const startDate = new Date(firstDay);
-                startDate.setDate(firstDay.getDate() - firstDay.getDay()); // Start from Sunday of the week containing the 1st
-
-                // Loop through weeks
-                let currentDate = new Date(startDate);
-                while (currentDate <= lastDay || currentDate.getDay() !== 0) {
-                    calendarHTML += '<tr>';
-                    for (let i = 0; i < 7; i++) {
-                        const day = currentDate.getDate();
-                        const month = currentDate.getMonth();
-                        const year = currentDate.getFullYear();
-                        const isCurrentMonth = month === currentMonth && year === currentYear;
-
-
-                        // Mark Fridays, weekends, and holidays as unavailable
-                        const holidays = [
-                            '01-01', // New Year's Day
-                            '03-08', // International Women's Day
-                            '05-01', // Labour Day
-                            '10-24', // Independence Day
-                            // Add more as needed
-                        ];
-                        const mmdd = (String(month + 1).padStart(2, '0')) + '-' + String(day).padStart(2, '0');
-                        let isAvailable = true;
-                        if (currentDate.getDay() === 0 || currentDate.getDay() === 5 || currentDate.getDay() === 6 || holidays.includes(mmdd)) {
-                            isAvailable = false;
-                        }
-
-                        if (isCurrentMonth) {
-                            const isToday = currentDate.toDateString() === today.toDateString();
-                            calendarHTML += `<td class="py-2 ${isAvailable ? 'bg-green-700' : 'bg-red-700'} ${isToday ? 'border-2 border-white font-bold' : ''}">${day}</td>`;
-                        } else {
-                            calendarHTML += '<td class="py-2"></td>';
-                        }
-
-                        currentDate.setDate(currentDate.getDate() + 1);
-                    }
-                    calendarHTML += '</tr>';
-                    if (currentDate > lastDay && currentDate.getDay() === 0) break; // Stop after the last week
-                }
-
-                calendarHTML += '</tbody></table>';
-                calendarTableElement.innerHTML = calendarHTML;
-            }
-        });
-        function showDateTime() {
-            let clock = document.getElementById('clock');
-            let currentTime = new Date();
-            let hours = currentTime.getHours();
-            let minutes = currentTime.getMinutes();
-            let seconds = currentTime.getSeconds();
-
-            if (hours < 10) hours = '0' + hours;
-            if (minutes < 10) minutes = '0' + minutes;
-            if (seconds < 10) seconds = '0' + seconds;
-
-            clock.textContent = `${hours}:${minutes}:${seconds}`;
-            setTimeout(showDateTime, 1000);
+        /* Clock */
+        .clock-block {
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+        }
+        .clock-wrap {
+            display: inline-flex;
+            align-items: baseline;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+        }
+        .clock-time {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3.5rem, 9vw, 6.5rem);
+            font-weight: 700;
+            color: var(--text);
+            letter-spacing: -0.03em;
+            line-height: 1;
+        }
+        .clock-seconds {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 4vw, 3rem);
+            font-weight: 700;
+            color: var(--text-muted);
+            letter-spacing: -0.02em;
+            line-height: 1;
+            align-self: flex-end;
+            padding-bottom: 0.2rem;
+        }
+        .clock-ampm {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--accent);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            align-self: flex-end;
+            padding-bottom: 0.35rem;
+            background: var(--accent-dim);
+            padding: 0.25rem 0.65rem;
+            border-radius: 99px;
+            border: 1px solid rgba(84,160,255,0.25);
+            margin-bottom: 0.3rem;
+        }
+        .clock-date {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-top: 0.6rem;
+            letter-spacing: 0.05em;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .clock-date::before {
+            content: '';
+            display: inline-block;
+            width: 3px;
+            height: 3px;
+            border-radius: 50%;
+            background: var(--accent);
         }
 
-        showDateTime();
+        /* Calendar */
+        .cal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+        }
+        .cal-month-label {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+        .cal-nav {
+            display: flex;
+            gap: 0.5rem;
+        }
+        .cal-nav button {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            background: var(--bg-card);
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: border-color 0.2s, color 0.2s;
+        }
+        .cal-nav button:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
 
-        const nameInput = document.getElementById('name');
-        const emailInput = document.getElementById('email');
-        const messageInput = document.getElementById('message');
-        const sendButton = document.getElementById('send-button');
-        const emailLink = document.getElementById('email-link');
+        .cal-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 6px;
+        }
+        .cal-day-name {
+            text-align: center;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--text);
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            padding: 0.6rem 0;
+        }
+        .cal-day {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            font-size: 0.92rem;
+            font-weight: 600;
+            cursor: default;
+            position: relative;
+            transition: transform 0.15s, background 0.15s;
+        }
+        .cal-day.empty { background: transparent; }
 
-        // When the send button is clicked...
-        sendButton.addEventListener('click', () => {
-            let name = nameInput.value;
-            let email = emailInput.value;
-            let message = messageInput.value;
-            emailLink.href = `mailto:stanford.sakhile@cs.unza.zm?subject=Enquiry from Website&body=Name: ${name} Email: ${email} Message: ${message}`;
-            emailLink.click();
+        .cal-day.available {
+            background: rgba(46, 204, 113, 0.22);
+            color: #5dde92;
+            border: 1px solid rgba(46, 204, 113, 0.4);
+        }
+        .cal-day.available:hover {
+            background: rgba(46, 204, 113, 0.35);
+            transform: scale(1.08);
+        }
+        .cal-day.unavailable {
+            background: rgba(231, 76, 60, 0.15);
+            color: #e87b6e;
+            border: 1px solid rgba(231, 76, 60, 0.25);
+        }
+        .cal-day.past {
+            opacity: 0.4;
+        }
+        .cal-day.today {
+            box-shadow: 0 0 0 2px var(--accent);
+            background: rgba(84, 160, 255, 0.18) !important;
+            color: #fff !important;
+            font-weight: 800;
+            border-color: var(--accent) !important;
+        }
+        .cal-day.today::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: var(--accent);
+        }
+
+        /* Legend */
+        .legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.25rem;
+            margin-top: 1.5rem;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+        }
+        .legend-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 3px;
+        }
+        .legend-dot.available  { background: rgba(46,204,113,0.7); }
+        .legend-dot.unavailable{ background: rgba(231,76,60,0.5); }
+        .legend-dot.today      { background: var(--accent); }
+
+        /* Availability note */
+        .avail-note {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-left: 3px solid #2ecc71;
+            border-radius: var(--radius-sm);
+            padding: 1rem 1.25rem;
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+        .avail-note i { color: #2ecc71; margin-top: 2px; flex-shrink: 0; }
+
+        /* Two-column layout for calendar + contact */
+        .avail-layout {
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        /* Social icons row */
+        .social-row-avail {
+            display: flex;
+            gap: 1.1rem;
+            margin-top: 1.5rem;
+        }
+        .social-row-avail a {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            transition: color 0.2s, transform 0.2s;
+        }
+        .social-row-avail a:hover {
+            color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        /* Back link */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            border: 1px solid var(--border);
+            padding: 0.4rem 0.9rem;
+            border-radius: 99px;
+            transition: border-color 0.2s, color 0.2s;
+            margin-bottom: 3rem;
+        }
+        .back-link:hover { border-color: var(--accent); color: var(--accent); }
+
+        @media (max-width: 860px) {
+            .avail-layout {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .cal-day { font-size: 0.75rem; border-radius: 6px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ── HEADER ── -->
+    <header id="site-header">
+        <div class="header-inner">
+            <a href="index.html" class="logo">SZ<span class="logo-dot">.</span></a>
+            <nav>
+                <ul>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#experience">Experience</a></li>
+                    <li><a href="index.html#projects">Projects</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Nav -->
+    <div class="mobile-nav" id="mobileNav">
+        <ul>
+            <li><a href="index.html#about"      class="mobile-link">About</a></li>
+            <li><a href="index.html#experience" class="mobile-link">Experience</a></li>
+            <li><a href="index.html#projects"   class="mobile-link">Projects</a></li>
+            <li><a href="index.html#contact"    class="mobile-link">Contact</a></li>
+        </ul>
+    </div>
+
+    <!-- ── MAIN ── -->
+    <main>
+        <section style="padding-top: 4rem; padding-bottom: 0;">
+            <div class="section-inner">
+
+                <a href="index.html" class="back-link">
+                    <i class="fas fa-arrow-left"></i> Back to Portfolio
+                </a>
+
+                <!-- Clock -->
+                <div class="section-label">LOCAL TIME — LUSAKA, ZAMBIA</div>
+                <div class="clock-block">
+                    <div class="clock-wrap">
+                        <span class="clock-time" id="clock-time">00:00</span>
+                        <span class="clock-seconds" id="clock-secs">00</span>
+                        <span class="clock-ampm" id="clock-ampm">AM</span>
+                    </div>
+                    <div class="clock-date" id="clock-date"></div>
+                </div>
+
+            </div>
+        </section>
+
+        <section style="padding-top: 3.5rem;">
+            <div class="section-inner">
+                <div class="avail-layout">
+
+                    <!-- Calendar -->
+                    <div>
+                        <div class="section-label">AVAILABILITY</div>
+                        <h2 class="section-title" style="margin-bottom:1.5rem;">When I'm Free</h2>
+
+                        <div class="cal-header">
+                            <span class="cal-month-label" id="cal-month-label"></span>
+                            <div class="cal-nav">
+                                <button id="cal-prev" aria-label="Previous month">
+                                    <i class="fas fa-chevron-left"></i>
+                                </button>
+                                <button id="cal-next" aria-label="Next month">
+                                    <i class="fas fa-chevron-right"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="cal-grid" id="cal-grid"></div>
+
+                        <div class="legend">
+                            <div class="legend-item">
+                                <span class="legend-dot available"></span> Available
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-dot unavailable"></span> Unavailable / Holiday
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-dot today"></span> Today
+                            </div>
+                        </div>
+
+                        <div class="avail-note">
+                            <i class="fas fa-info-circle"></i>
+                            <span>
+                                I'm generally available <strong>Monday – Thursday</strong>. Fridays, weekends, and Zambian public holidays are marked unavailable.
+                                Send me a message to book a specific slot.
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Contact / Enquiry -->
+                    <div>
+                        <div class="section-label">GET IN TOUCH</div>
+                        <h2 class="section-title" style="margin-bottom:1rem;">Send an Enquiry</h2>
+                        <p style="color:var(--text-muted); font-size:0.95rem; margin-bottom:1.75rem; line-height:1.7;">
+                            Want to book a meeting or discuss an opportunity? Drop me a message and I'll get back to you.
+                        </p>
+
+                        <form id="enquiry-form">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" name="name" placeholder="Your name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" name="message" rows="5" placeholder="What would you like to discuss?" required></textarea>
+                            </div>
+                            <button type="button" id="send-button" class="btn-submit">
+                                Send Enquiry <i class="fas fa-paper-plane"></i>
+                            </button>
+                            <div id="form-feedback" style="display:none;" class="form-message"></div>
+                        </form>
+
+                        <!-- Direct contact -->
+                        <div style="margin-top:2rem; padding-top:1.5rem; border-top: 1px solid var(--border);">
+                            <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:0.75rem; letter-spacing:0.04em; text-transform:uppercase; font-weight:600;">Or reach me directly</p>
+                            <a href="mailto:stanford.sakhile@cs.unza.zm" style="font-size:0.9rem; color:var(--accent); display:inline-flex; align-items:center; gap:0.5rem;">
+                                <i class="fas fa-envelope"></i> stanford.sakhile@cs.unza.zm
+                            </a>
+                        </div>
+
+                        <div class="social-row-avail">
+                            <a href="https://wa.link/lppkij" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                            <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://github.com/sakhile-bit" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                            <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                            <a href="https://www.instagram.com/stanfordsakhile/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ── FOOTER ── -->
+    <footer style="margin-top:4rem;">
+        <div class="footer-inner">
+            <span class="footer-logo">SZ<span class="logo-dot">.</span></span>
+            <p>&copy; 2025 Stanford Zulu. All rights reserved.</p>
+            <a href="Stanford_Zulu_CV.pdf" download class="footer-cv">
+                <i class="fas fa-file-download"></i> Download CV
+            </a>
+        </div>
+    </footer>
+
+    <script>
+    // ── Clock ──
+    function updateClock() {
+        const now  = new Date();
+        let h      = now.getHours();
+        const m    = String(now.getMinutes()).padStart(2, '0');
+        const s    = String(now.getSeconds()).padStart(2, '0');
+        const ampm = h >= 12 ? 'PM' : 'AM';
+        h = h % 12 || 12;
+
+        document.getElementById('clock-time').textContent = `${String(h).padStart(2,'0')}:${m}`;
+        document.getElementById('clock-secs').textContent = s;
+        document.getElementById('clock-ampm').textContent = ampm;
+
+        const dateOpts = { weekday:'long', year:'numeric', month:'long', day:'numeric' };
+        document.getElementById('clock-date').textContent = now.toLocaleDateString(undefined, dateOpts);
+    }
+    updateClock();
+    setInterval(updateClock, 1000);
+
+    // ── Calendar ──
+    const MONTHS = ['January','February','March','April','May','June',
+                    'July','August','September','October','November','December'];
+    const DAYS   = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+
+    // Zambian public holidays (MM-DD)
+    const HOLIDAYS = new Set([
+        '01-01', // New Year's Day
+        '03-08', // International Women's Day
+        '04-18', // Good Friday (approx)
+        '04-21', // Easter Monday (approx)
+        '05-01', // Labour Day
+        '05-25', // Africa Day
+        '07-07', // Heroes' Day
+        '07-08', // Unity Day
+        '08-04', // Farmers' Day
+        '10-24', // Independence Day
+        '12-25', // Christmas Day
+        '12-26', // Boxing Day
+    ]);
+
+    let viewYear, viewMonth;
+    const today = new Date();
+
+    function isUnavailable(date) {
+        const dow  = date.getDay();               // 0=Sun,5=Fri,6=Sat
+        const mmdd = `${String(date.getMonth()+1).padStart(2,'0')}-${String(date.getDate()).padStart(2,'0')}`;
+        return dow === 0 || dow === 5 || dow === 6 || HOLIDAYS.has(mmdd);
+    }
+
+    function renderCalendar(year, month) {
+        viewYear  = year;
+        viewMonth = month;
+
+        document.getElementById('cal-month-label').textContent = `${MONTHS[month]} ${year}`;
+
+        const grid = document.getElementById('cal-grid');
+        grid.innerHTML = '';
+
+        // Day-name headers
+        DAYS.forEach(d => {
+            const el = document.createElement('div');
+            el.className = 'cal-day-name';
+            el.textContent = d;
+            grid.appendChild(el);
         });
+
+        const firstDay = new Date(year, month, 1).getDay();
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+        // Leading empty cells
+        for (let i = 0; i < firstDay; i++) {
+            const el = document.createElement('div');
+            el.className = 'cal-day empty';
+            grid.appendChild(el);
+        }
+
+        // Day cells
+        for (let d = 1; d <= daysInMonth; d++) {
+            const date = new Date(year, month, d);
+            const el   = document.createElement('div');
+            const isPast    = date < new Date(today.getFullYear(), today.getMonth(), today.getDate());
+            const isToday   = date.toDateString() === today.toDateString();
+            const unavail   = isUnavailable(date);
+
+            el.className = 'cal-day ' + (unavail ? 'unavailable' : 'available') + (isPast ? ' past' : '') + (isToday ? ' today' : '');
+            el.textContent = d;
+            el.title = unavail ? 'Unavailable' : 'Available';
+            grid.appendChild(el);
+        }
+    }
+
+    renderCalendar(today.getFullYear(), today.getMonth());
+
+    document.getElementById('cal-prev').addEventListener('click', () => {
+        let m = viewMonth - 1, y = viewYear;
+        if (m < 0) { m = 11; y--; }
+        renderCalendar(y, m);
+    });
+    document.getElementById('cal-next').addEventListener('click', () => {
+        let m = viewMonth + 1, y = viewYear;
+        if (m > 11) { m = 0; y++; }
+        renderCalendar(y, m);
+    });
+
+    // ── Sticky header ──
+    const header = document.getElementById('site-header');
+    window.addEventListener('scroll', () => {
+        header.classList.toggle('scrolled', window.scrollY > 50);
+    }, { passive: true });
+
+    // ── Hamburger ──
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobileNav');
+    hamburger.addEventListener('click', () => {
+        const open = hamburger.classList.toggle('open');
+        mobileNav.classList.toggle('open', open);
+        document.body.style.overflow = open ? 'hidden' : '';
+    });
+    document.querySelectorAll('.mobile-link').forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('open');
+            mobileNav.classList.remove('open');
+            document.body.style.overflow = '';
+        });
+    });
+
+    // ── Enquiry form → mailto ──
+    document.getElementById('send-button').addEventListener('click', () => {
+        const name    = document.getElementById('name').value.trim();
+        const email   = document.getElementById('email').value.trim();
+        const message = document.getElementById('message').value.trim();
+        const fb      = document.getElementById('form-feedback');
+
+        if (!name || !email || !message) {
+            fb.className = 'form-message error';
+            fb.textContent = 'Please fill in all fields.';
+            fb.style.display = 'block';
+            return;
+        }
+
+        const body = `Name: ${name}%0AEmail: ${email}%0A%0AMessage:%0A${encodeURIComponent(message)}`;
+        window.location.href = `mailto:stanford.sakhile@cs.unza.zm?subject=Enquiry from Portfolio&body=${body}`;
+
+        fb.className = 'form-message success';
+        fb.textContent = '✓ Opening your email client…';
+        fb.style.display = 'block';
+    });
     </script>
 </body>
 </html>
