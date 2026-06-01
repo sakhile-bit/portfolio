@@ -817,9 +817,13 @@ a.contact-row:hover { color: var(--accent); }
 }
 
 .social-row a {
-    font-size: 1.35rem;
+    display: inline-flex;
     color: var(--text-muted);
     transition: color var(--transition), transform var(--transition);
+}
+.social-row a svg {
+    width: 22px;
+    height: 22px;
 }
 .social-row a:hover {
     color: var(--accent);
