@@ -397,8 +397,8 @@
                         <!-- Direct contact -->
                         <div style="margin-top:2rem; padding-top:1.5rem; border-top: 1px solid var(--border);">
                             <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:0.75rem; letter-spacing:0.04em; text-transform:uppercase; font-weight:600;">Or reach me directly</p>
-                            <a href="mailto:stanford.sakhile@cs.unza.zm" style="font-size:0.9rem; color:var(--accent); display:inline-flex; align-items:center; gap:0.5rem;">
-                                <i class="fas fa-envelope"></i> stanford.sakhile@cs.unza.zm
+                            <a href="mailto:sakilestanford28@gmail.com" style="font-size:0.9rem; color:var(--accent); display:inline-flex; align-items:center; gap:0.5rem;">
+                                <i class="fas fa-envelope"></i> sakilestanford28@gmail.com
                             </a>
                         </div>
 
@@ -581,11 +581,12 @@
             return;
         }
 
-        const body = `Name: ${name}%0AEmail: ${email}%0A%0AMessage:%0A${encodeURIComponent(message)}`;
-        window.location.href = `mailto:stanford.sakhile@cs.unza.zm?subject=Enquiry from Portfolio&body=${body}`;
+        const subject = encodeURIComponent(`Enquiry from ${name} (Portfolio)`);
+        const body    = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`);
+        window.location.href = `mailto:sakilestanford28@gmail.com?subject=${subject}&body=${body}`;
 
         fb.className = 'form-message success';
-        fb.textContent = '✓ Opening your email client…';
+        fb.textContent = '✓ Opening your email app…';
         fb.style.display = 'block';
     });
     </script>
