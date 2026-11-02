@@ -69,32 +69,16 @@ document.addEventListener('DOMContentLoaded', () => {
     if (contactForm) {
         contactForm.addEventListener('submit', function (e) {
             e.preventDefault();
-            const btn = this.querySelector('.btn-submit');
-            btn.textContent = 'Sending…';
-            btn.disabled = true;
+            const name    = document.getElementById('name').value.trim();
+            const email   = document.getElementById('email').value.trim();
+            const message = document.getElementById('message').value.trim();
 
-            fetch(this.action || '#', {
-                method: 'POST',
-                body: new FormData(this),
-                headers: { 'Accept': 'application/json' }
-            })
-            .then(res => {
-                if (res.ok) {
-                    formMessage.className = 'form-message success';
-                    formMessage.textContent = '✓ Message sent! I\'ll be in touch soon.';
-                    contactForm.reset();
-                } else {
-                    throw new Error('Server error');
-                }
-            })
-            .catch(() => {
-                formMessage.className = 'form-message error';
-                formMessage.textContent = '✗ Something went wrong. Try emailing me directly.';
-            })
-            .finally(() => {
-                btn.innerHTML = 'Send Message <i class="fas fa-paper-plane"></i>';
-                btn.disabled = false;
-            });
+            const subject = encodeURIComponent(`Message from ${name} (Portfolio)`);
+            const body    = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`);
+            window.location.href = `mailto:sakilestanford28@gmail.com?subject=${subject}&body=${body}`;
+
+            formMessage.className = 'form-message success';
+            formMessage.textContent = '✓ Opening your email app…';
         });
     }
 
